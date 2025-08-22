@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Fitelven</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+    <h1>Registro FILTELVEN 2025</h1>
+        <form id="registroForm">
+        <input type="text" name="nombre" placeholder="Nombre" required>
+        <input type="text" name="apellido" placeholder="Apellido" required>
+        <input type="email" name="correo" placeholder="E-mail" required>
+        <input type="text" name="empresa" placeholder="Empresa">
+        <input type="text" name="contacto" placeholder="Contacto">
+        <input type="text" name="cargo" placeholder="Cargo">
+        <input type="text" name="telefonos" placeholder="Telefono" required>
+        <button type="submit">Enviar</button>
+        <div id="message"></div>
+    </form>
+    </div>
+
+    <script>
+        document.getElementById('registroForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const data = {
+                nombre: form.nombre.value,
+                apellido: form.apellido.value,
+                correo: form.correo.value,
+                empresa: form.empresa.value,
+                contacto: form.contacto.value,
+                cargo: form.cargo.value,
+                telefonos: form.telefonos.value
+            };
+
+            try {
+                const response = await fetch('/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                const messageDiv = document.getElementById('message');
+                if (result.success) {
+                    messageDiv.textContent = 'Registro exitoso.';
+                    messageDiv.style.color = 'green';
+                    form.reset();
+                } else {
+                    messageDiv.textContent = 'Error al registrar: ' + result.error;
+                    messageDiv.style.color = 'red';
+                }
+            } catch (error) {
+                document.getElementById('message').textContent = 'Error de conexión.';
+                document.getElementById('message').style.color = 'red';
+            }
+        });
+    </script>
+
+</body>
+</html>
