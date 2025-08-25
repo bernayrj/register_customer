@@ -6,6 +6,7 @@
             justify-content: center;
             align-items: center;
             font-family: Arial, sans-serif;
+            font-size: 12px;
             background-color: #f4f4f4;
             position: relative;
             background-image: url(./imagen/logo_topwiseven.png);
@@ -45,13 +46,13 @@
             font-size: 16px;
         }
         button {
-            background-color: #007BFF;
-            color: white;
+            background-color: #9e9e9e;
+            color: black;
             border: none;
             cursor: pointer;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #757575;
         }
 
         @media (max-width: 600px) {
