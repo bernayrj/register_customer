@@ -14,13 +14,12 @@
     </div>
     <h1>Registro FITELVEN 2025</h1>
         <form id="registroForm">
-        <input type="text" name="nombre" placeholder="Nombre" required>
-        <input type="text" name="apellido" placeholder="Apellido" required>
+        <input type="text" name="nombre" placeholder="Nombre" inputmode="latin" pattern="[A-Za-zñÑáéíóúüÁÉÍÓÚÜ ]+" title="solo letras" required>
+        <input type="text" name="apellido" placeholder="Apellido" inputmode="latin" pattern="[A-Za-zñÑáéíóúüÁÉÍÓÚÜ ]+" title="solo letras" required>
         <input type="email" name="correo" placeholder="E-mail" required>
         <input type="text" name="empresa" placeholder="Empresa">
-       <!--  <input type="text" name="contacto" placeholder="Persona Contacto"> -->
         <input type="text" name="cargo" placeholder="Cargo">
-        <input type="text" name="telefonos" placeholder="Telefono" required>
+        <input type="text" name="telefonos" placeholder="Telefono" pattern="[0-9]{11}" title="11 digitos requeridos" required>
         <button type="submit">Enviar</button>
         <div id="message"></div>
     </form>
@@ -35,7 +34,6 @@
                 apellido: form.apellido.value,
                 correo: form.correo.value,
                 empresa: form.empresa.value,
-                contacto: form.contacto.value,
                 cargo: form.cargo.value,
                 telefonos: form.telefonos.value
             };
