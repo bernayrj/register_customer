@@ -14,10 +14,10 @@ app.get('/registro', (req, res) => {
 });
 
 app.post('/submit', async (req, res) => {
-    const { nombre, apellido, correo, empresa, contacto, cargo, telefonos } = req.body;
+    const { nombre, telefono, correo } = req.body;
     try {
-        const result = await db.query("INSERT INTO customer (customer_name, customer_lastname, customer_email, customer_enterprise, customer_person, customer_position, customer_phone) VALUES (?, ?, ?, ?, ?, ?, ?)", 
-            [nombre, apellido, correo, empresa, contacto, cargo, telefonos]);
+        const result = await db.query("CALL add_customer (?, ?, ?)", 
+            [nombre, telefono, correo]);
         res.json( { success: true } );
     } catch (err) {
         console.error(err);

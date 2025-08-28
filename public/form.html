@@ -10,18 +10,17 @@
 <body>
     <div class="container">
     <div class="logo">
-         <img src="./imagen/logo_topwiseven.png" alt="logo_topwiseven">
+         <img src="./imagen/logo_access.png" alt="logo_topwiseven">
     </div>
-    <h1>Registro FITELVEN 2025</h1>
+    <h1>Regístrate</h1>
         <form id="registroForm">
-        <input type="text" name="nombre" placeholder="Nombre" required>
-        <input type="text" name="apellido" placeholder="Apellido" required>
-        <input type="email" name="correo" placeholder="E-mail" required>
-        <input type="text" name="empresa" placeholder="Empresa">
-       <!--  <input type="text" name="contacto" placeholder="Persona Contacto"> -->
-        <input type="text" name="cargo" placeholder="Cargo">
-        <input type="text" name="telefonos" placeholder="Telefono" required>
-        <button type="submit">Enviar</button>
+        <label>Nombre y apellido*</label>
+        <input type="text" name="nombre" inputmode="latin" pattern="[A-Za-zñÑáéíóúüÁÉÍÓÚÜ ]+" title="solo letras" required>
+        <label>Número de teléfono*</label>
+        <input type="tel" name="telefono" pattern="[0-9]{11}" title="11 digitos requeridos" required>
+        <label>Correo electrónico*</label>
+        <input type="email" name="correo" required>
+        <button type="submit">Aceptar</button>
         <div id="message"></div>
     </form>
     </div>
@@ -32,12 +31,8 @@
             const form = e.target;
             const data = {
                 nombre: form.nombre.value,
-                apellido: form.apellido.value,
-                correo: form.correo.value,
-                empresa: form.empresa.value,
-                contacto: form.contacto.value,
-                cargo: form.cargo.value,
-                telefonos: form.telefonos.value
+                telefono: form.telefono.value,
+                correo: form.correo.value
             };
 
             try {
