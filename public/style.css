@@ -62,11 +62,16 @@
             background-color: #757575;
         }
 
-        @media (max-width: 600px) {
+    @media (max-width: 1080px) {
     form {
         padding: 20px;
     }
-
+    body {
+        background-color: #50519e;
+        background-image: url(./imagen/background.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
     input, button {
         width: 100%;
         font-size: 14px;
