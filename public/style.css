@@ -15,9 +15,9 @@
             background-color: #826;
             position: relative;
             background-image: url(./imagen/fondo_access.jpg);
-            background-size: contain;
-            background-position: center center;
-            background-repeat: repeat;
+            background-size: cover;
+           /*  background-position: center center; */
+            background-repeat: no-repeat;
         }
 
         
