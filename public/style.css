@@ -15,9 +15,9 @@
             background-color: #826;
             position: relative;
             background-image: url(./imagen/fondo_access.jpg);
-            background-size: cover;
+            background-size: contain;
            /*  background-position: center center; */
-            background-repeat: no-repeat;
+            background-repeat: repeat;
         }
 
         
@@ -70,11 +70,16 @@
             background-color: #757575;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 1080px) {
     form {
         padding: 20px;
     }
-
+    body {
+        background-color: #826;
+        background-image: url(./imagen/fondo_access.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
     input, button {
         width: 100%;
         font-size: 14px;
