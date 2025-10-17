@@ -20,23 +20,34 @@
         <input type="text" name="empresa" placeholder="Empresa">
         <input type="text" name="cargo" placeholder="Cargo">
         <input type="text" name="telefonos" placeholder="Telefono" pattern="[0-9]{11}" title="11 digitos requeridos" required>
-        <button type="submit">Enviar</button>
+    <button type="submit" id="submitBtn"><span class="btn-text">Enviar</span><span class="spinner" aria-hidden="true"></span></button>
         <div id="message"></div>
     </form>
     </div>
 
     <script>
-        document.getElementById('registroForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const form = e.target;
-            const data = {
-                nombre: form.nombre.value,
-                apellido: form.apellido.value,
-                correo: form.correo.value,
-                empresa: form.empresa.value,
-                cargo: form.cargo.value,
-                telefonos: form.telefonos.value
-            };
+        (function() {
+            const form = document.getElementById('registroForm');
+            const submitBtn = document.getElementById('submitBtn');
+            let isSubmitting = false;
+
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                if (isSubmitting) return; // guard against double submit
+                isSubmitting = true;
+                submitBtn.disabled = true;
+                const btnTextElem = submitBtn.querySelector('.btn-text');
+                const originalText = btnTextElem ? btnTextElem.innerText : submitBtn.textContent;
+                if (btnTextElem) btnTextElem.innerText = 'Enviando...';
+
+                const data = {
+                    nombre: form.nombre.value,
+                    apellido: form.apellido.value,
+                    correo: form.correo.value,
+                    empresa: form.empresa.value,
+                    cargo: form.cargo.value,
+                    telefonos: form.telefonos.value
+                };
 
             try {
                 const response = await fetch('/submit', {
@@ -58,10 +69,17 @@
                     messageDiv.style.color = 'red';
                 }
             } catch (error) {
-                document.getElementById('message').textContent = 'Error de conexión.';
-                document.getElementById('message').style.color = 'red';
+                const messageDiv = document.getElementById('message');
+                messageDiv.textContent = 'Error de conexión.';
+                messageDiv.style.color = 'red';
             }
-        });
+            
+                // re-enable button regardless of success/failure
+                isSubmitting = false;
+                submitBtn.disabled = false;
+                if (btnTextElem) btnTextElem.innerText = originalText;
+            });
+    })();
     </script>
 
 </body>

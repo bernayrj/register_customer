@@ -62,6 +62,33 @@
             background-color: #757575;
         }
 
+        /* Spinner styles for submit button */
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-left: 8px;
+            border: 2px solid rgba(255,255,255,0.6);
+            border-top-color: rgba(0,0,0,0.8);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            vertical-align: middle;
+            visibility: hidden; /* hidden by default */
+        }
+
+        button:disabled .spinner {
+            visibility: visible;
+        }
+
+        button:disabled .btn-text {
+            opacity: 0.7;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
     @media (max-width: 1080px) {
     form {
         padding: 20px;
